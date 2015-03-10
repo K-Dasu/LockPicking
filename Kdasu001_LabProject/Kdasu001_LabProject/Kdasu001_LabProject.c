@@ -30,6 +30,9 @@ unsigned char correct_pins[50];
 // Booleans and other variables
 int iter = 0;
 short adc_value = 0;
+const unsigned char pins[] = {'|','|','|','|','|','|','|','|','|','|','|','|','|','|','|','|'};
+const unsigned char sp[] = {'S','u','c','c','e','s','s','f','u','l',' ','P','i','c','k','!'};
+const unsigned char pbn[] = {'P','r','e','s','s',' ','B','u','t','t','o','n',' ','N','o','w'};
 unsigned char message[]= {'W','e','l','c','o','m','e',' ','T','o',' ','L','o','c','k',' ','P','i','c','k',' ','P','r','e','s','s',' ','T','o',' ','S','t','a','r','t','!','!'};
 unsigned char display[16];
 unsigned char game_over = 0x00; //bool if 1 game over and therefore proceed with the reset button
@@ -102,7 +105,7 @@ int TitleScreen(int state) {
 			break;
 		case gamestart:
 			if(gs_disply == 0x00){
-				LCD_DisplayString(1,"||||||||||||||||");
+				LCD_DisplayString(1,pins);
 				LCD_Cursor(17);
 				game_start = 0x01;
 				game_over = 0x00;
@@ -234,8 +237,8 @@ int GamePlayLogic(int state){
 			break;
 		case success:
 			if(win_disply == 0x00){
-				LCD_DisplayString(1,"Successful Pick!!");
-				LCD_DisplayString(17,"Press button now");
+				LCD_DisplayString(1,sp);
+				LCD_DisplayString(17,pbn);
 				win_disply = 0x01;
 				setarray = 0x00;
 			}			
@@ -243,7 +246,7 @@ int GamePlayLogic(int state){
 		case success_press:
 			if(setarray == 0x00){
 				LCD_ClearScreen();
-				LCD_DisplayString(1, "||||||||||||||||");
+				LCD_DisplayString(1, pins);
 				LCD_Cursor(17);
 				cp_array_pos = 0;
 				array_len++;
