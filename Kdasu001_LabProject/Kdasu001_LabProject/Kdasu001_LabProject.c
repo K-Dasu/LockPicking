@@ -37,6 +37,7 @@ unsigned char game_start = 0x00;
 unsigned char gs_disply = 0x00;
 unsigned char win_disply = 0x00;
 unsigned char button1 = 0x00;
+unsigned char setarray = 0x00;
 
 
 /*     Tasks         
@@ -202,8 +203,9 @@ int GamePlayLogic(int state){
 			if(button1) {
 				state = success_press; 
 			}else{
-				state = idleGPS;
+				state = playing;
 			} 
+			break;
 		default:
 			state = idleGPS;
 			break;
@@ -235,14 +237,25 @@ int GamePlayLogic(int state){
 				LCD_DisplayString(1,"Successful Pick!!");
 				LCD_DisplayString(17,"Press button now");
 				win_disply = 0x01;
+				setarray = 0x00;
 			}			
 			break;
 		case success_press:
-			LCD_ClearScreen();
-			LCD_DisplayString(1, "||||||||||||||||");
-			LCD_Cursor(17);
-			cp_array_pos = 0;
-			array_len++;
+			if(setarray == 0x00){
+				LCD_ClearScreen();
+				LCD_DisplayString(1, "||||||||||||||||");
+				LCD_Cursor(17);
+				cp_array_pos = 0;
+				array_len++;
+				iter = 0;
+				for(iter = 0; iter < array_len; iter++){
+					correct_pins[iter] = generate_random();
+					PORTC = itoHEX(iter);
+				}
+				setarray = 0x01;
+				win_disply = 0x00;
+			}
+			break;
 		default:
 			break;
 	}
@@ -281,7 +294,8 @@ int main(void)
 	tmpGCD = findGCD(SMTick1_calc, SMTick2_calc);
 	tmpGCD = findGCD(tmpGCD, SMTick3_calc);
 	
-	unsigned long int GCD = tmpGCD;	
+	unsigned long int GCD = tmpGCD;
+	
 	unsigned long int SMTick1_period = SMTick1_calc/GCD;
 	unsigned long int SMTick2_period = SMTick2_calc/GCD;
 	unsigned long int SMTick3_period = SMTick3_calc/GCD;
