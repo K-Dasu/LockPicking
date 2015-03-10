@@ -153,7 +153,12 @@ int SM_Scroll(int state){
 				LCD_Cursor(current_position + 16);
 				previous_position = current_position;
 				//play cursor sound
-				set_PWM(25);
+				if(current_position == correct_pins[cp_array_pos])
+				{
+					set_PWM(440.0);
+				}else{
+					set_PWM(25);
+				}
 			}else{
 				set_PWM(0);
 			}
