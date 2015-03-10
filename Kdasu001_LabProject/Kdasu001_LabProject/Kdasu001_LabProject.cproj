@@ -56,6 +56,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Helper_functions.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="io.c">
       <SubType>compile</SubType>
     </Compile>
@@ -63,30 +66,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Kdasu001_LabProject.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="keypad.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="lcd_8bit_task.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="queue.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="scheduler.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="seven_seg.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="stack.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="timer.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="usart.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Utilities.h">

@@ -21,6 +21,17 @@ unsigned char GetBit(unsigned char x, unsigned char k) {
 	return ((x & (0x01 << k)) != 0);
 }
 
+typedef struct _task {
+	//Task's current state, period, and the time elapsed
+	// since the last tick
+	signed char state;
+	unsigned long int period;
+	unsigned long int elapsedTime;
+	//Task tick function
+	int (*TickFct)(int);
+} task;
+
+
 unsigned long int findGCD (unsigned long int a, unsigned long int b)
 {
 	unsigned long int c;
@@ -31,6 +42,15 @@ unsigned long int findGCD (unsigned long int a, unsigned long int b)
 		b = c;
 	}
 	return 0;
+}
+
+void ADC_init() {
+ADCSRA |= (1 << ADEN) | (1 << ADSC) | (1 << ADATE);
+// ADEN: setting this bit enables analog-to-digital conversion.
+// ADSC: setting this bit starts the first conversion.
+// ADATE: setting this bit enables auto-triggering. Since we are
+// in Free Running Mode, a new conversion will trigger
+// whenever the previous conversion completes.
 }
 
 // #include <ucr/bit.h> //TODO: is this needed?
@@ -92,9 +112,7 @@ unsigned char GetKeypadKey() {
 
 	
 void set_PWM(double frequency) {
-	
-	
-	// Keeps track of the currently set frequency
+  // Keeps track of the currently set frequency
   // Will only update the registers when the frequency
   // changes, plays music uninterrupted.
 	static double current_frequency;

@@ -12,6 +12,9 @@ Kdasu001_LabProject.d Kdasu001_LabProject.o: .././Kdasu001_LabProject.c \
  c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/lock.h \
  .././Utilities.h \
  c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/interrupt.h \
+ .././Helper_functions.h \
+ c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/stdlib.h \
+ c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/include/stddef.h \
  .././io.h
 
 c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/io.h:
@@ -39,5 +42,11 @@ c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27
 .././Utilities.h:
 
 c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/interrupt.h:
+
+.././Helper_functions.h:
+
+c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/stdlib.h:
+
+c:\program\ files\ (x86)\atmel\avr\ studio\ 5.1\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/include/stddef.h:
 
 .././io.h:
