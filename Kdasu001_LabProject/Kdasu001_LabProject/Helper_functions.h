@@ -56,17 +56,17 @@ char calc_postion(short max, short adc_value)
 	}
 	
 }
-
+//528
 char get_position(char array_len, short adc_val)
 {
 	if(array_len >= 17){
-		return calc_postion(80, adc_val);
+		return calc_postion(190, adc_val);
 	}else if(array_len >= 15){
 		return calc_postion(228, adc_val);
 	}else if(array_len >= 11){
 		return calc_postion(368, adc_val);
 	}else if(array_len >= 7){
-		return calc_postion(448, adc_val);
+		return calc_postion(190, adc_val);
 	}else if(array_len >= 3){
 		return calc_postion(528, adc_val);
 	}
@@ -74,6 +74,39 @@ char get_position(char array_len, short adc_val)
 	return 1;
 }
 
+void display_level(unsigned char level){
+	if(level == 3){
+		LCD_WriteData('1');
+	}else if(level == 4){
+		LCD_WriteData('2');
+	}else if(level == 5){
+		LCD_WriteData('3');
+	}else if(level == 6){
+		LCD_WriteData('4');
+	}else if(level == 7){
+		LCD_WriteData('5');
+	}else if(level == 8){
+		LCD_WriteData('6');
+	}else if(level == 9){
+		LCD_WriteData('7');
+	}else if(level == 10){
+		LCD_WriteData('8');
+	}else if(level == 11){
+		LCD_WriteData('9');
+	}else if(level == 12){
+		LCD_DisplayString(17,"level 10");
+	}else if(level == 13){
+		LCD_DisplayString(17,"level 11");
+	}else if(level == 14){
+		LCD_DisplayString(17,"level 12");
+	}else if(level == 15){
+		LCD_DisplayString(17,"level 13");
+	}else if(level == 16){
+		LCD_DisplayString(17,"level 14");
+	}else{
+		LCD_DisplayString(17,"Wow Congrats..!!");
+	}		
+}
 
 char itoHEX(unsigned char i)
 {	
