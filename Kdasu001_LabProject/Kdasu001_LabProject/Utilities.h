@@ -1,7 +1,6 @@
 /*Keshav Dasu kdasu001@ucr.edu:
-* Michael Brevard mbrev001@ucr.edu:
 * Lab Section 022:
-* Assignment: Lab # 4 Exercise # 1
+* Assignment: Lab Project
 *
 * I acknowledge all content contained herein, excluding template or example
 * code, is my own original work.

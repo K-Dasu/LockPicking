@@ -215,7 +215,7 @@ int SM_Scroll(int state){
 			break;
 		case sm1_state1:
 		
-			if(life == 3){
+			if(life >= 3){
 				PORTC = 0x07;
 			}else if(life == 2){
 				PORTC = 0x06;
@@ -394,6 +394,35 @@ int PlaySong(int state){
 	return state;
 } 
 
+
+
+enum BreakPickState{idleBP};
+
+int BreakPick(int state){
+	switch(state){
+		case idleBP:
+			state = idleBP;
+			break;
+		default:
+			state = idleBP;
+			break;
+	}
+	
+	switch(state){
+		case idleBP:
+			if(current_position != previous_position){
+				if(current_position - previous_position > 1 || current_position - previous_position < -1){
+					life--;
+				}
+			}
+			break;
+		default:break;
+	}
+	
+	return state;
+} 
+
+
 /*     Functions          */
 
 void LP_LCD_init(unsigned long int GCD){
@@ -421,12 +450,15 @@ int main(void)
 	unsigned long int SMTick1_calc = 500; // write to screen 
 	unsigned long int SMTick2_calc = 50; // scroll
 	unsigned long int SMTick3_calc = 50; // gameplay logic
-	unsigned long int SMTick4_calc = 500; // gameplay logic
+	unsigned long int SMTick4_calc = 500; // Game over song logic
+	unsigned long int SMTick5_calc = 25; // scroll
+	
 	
 	unsigned long int tmpGCD = 1;
 	tmpGCD = findGCD(SMTick1_calc, SMTick2_calc);
 	tmpGCD = findGCD(tmpGCD, SMTick3_calc);
 	tmpGCD = findGCD(tmpGCD, SMTick4_calc);
+	tmpGCD = findGCD(tmpGCD, SMTick5_calc);
 	
 	unsigned long int GCD = tmpGCD;
 
@@ -434,10 +466,11 @@ int main(void)
 	unsigned long int SMTick2_period = SMTick2_calc/GCD;
 	unsigned long int SMTick3_period = SMTick3_calc/GCD;
 	unsigned long int SMTick4_period = SMTick4_calc/GCD;
+	unsigned long int SMTick5_period = SMTick5_calc/GCD;
 	
 	//Declare an array of tasks
-	static task task1, task2, task3, task4;
-	task *tasks[] = { &task1, &task2, &task3, &task4};
+	static task task1, task2, task3, task4, task5;
+	task *tasks[] = { &task1, &task2, &task3, &task4, &task5};
 	const unsigned short numTasks = sizeof(tasks)/sizeof(task*);
 	
 	// Task 1
@@ -458,12 +491,17 @@ int main(void)
 	task3.elapsedTime = SMTick3_period;
 	task3.TickFct = &GamePlayLogic;
 	
-	// Task 3
+	// Task 4
 	task4.state = -1;
 	task4.period = SMTick4_period;
 	task4.elapsedTime = SMTick4_period;
 	task4.TickFct = &PlaySong;
-	
+
+	// Task 5
+	task5.state = -1;
+	task5.period = SMTick5_period;
+	task5.elapsedTime = SMTick5_period;
+	task5.TickFct = &BreakPick;	
 
 	LP_LCD_init(GCD);
 	

@@ -1,9 +1,10 @@
-/*
- * Helper_functions.h
- *
- * Created: 3/8/2015 1:04:42 PM
- *  Author: Keshav Dasu
- */ 
+/*Keshav Dasu kdasu001@ucr.edu:
+* Lab Section 022:
+* Assignment: Lab Project
+*
+* I acknowledge all content contained herein, excluding template or example
+* code, is my own original work.
+*/
 #include <stdlib.h>
 
 #ifndef HELPER_FUNCTIONS_H_
